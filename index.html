@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OURANOS</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@900&display=swap');
+    html, body {
+      margin: 0; padding: 0;
+      width: 100vw; height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 800px;
+    }
+
+    .parent {
+      position: relative;
+      width: 60%; max-width: 375px;
+      height: 240px;
+      background: #fff;
+      border-radius: 5px;
+      overflow: hidden;                 /* ⬅ 필수: 자식 레이어가 벗어나지 않도록 */
+      transform-style: preserve-3d;
+      transition: transform 0.3s ease-out;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    /* 호버 시 3D 기울기 */
+    .parent:hover {
+      transform: rotateX(10deg) rotateY(10deg);
+    }
+
+    /* 채우기 레이어 */
+    .parent::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 0;                       /* 초기에는 가로 0 */
+      height: 100%;
+      background-color: #ff5e00;     /* 채울 색상 */
+      transition: width 0.6s ease-out;
+      z-index: 1;
+    }
+    /* 호버하면 width 를 100% 로 */
+    .parent:hover::before {
+      width: 100%;
+    }
+
+    /* 텍스트는 위 레이어보다 위에 보여주기 */
+    .parent h2 {
+      position: relative;
+      z-index: 2;
+      margin: 0;
+      font-family: "Noto Sans KR", sans-serif;
+      font-size: 24px; font-weight: 900;
+      color: #000;
+      transition: color 0.6s ease-out;
+    }
+    /* (선택) 채워진 뒤 텍스트 색 변경 */
+    .parent:hover h2 {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="parent">
+    <h2>ouranos</h2>
+  </div>
+</body>
+</html>
